@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<VolumeFlowPerArea>,
         IConvertible,
         IEquatable<VolumeFlowPerArea>,
+        IEquatableQuantity<VolumeFlowPerArea>,
         IFormattable
     {
         /// <summary>

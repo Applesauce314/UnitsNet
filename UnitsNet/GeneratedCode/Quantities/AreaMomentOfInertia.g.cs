@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<AreaMomentOfInertia>,
         IConvertible,
         IEquatable<AreaMomentOfInertia>,
+        IEquatableQuantity<AreaMomentOfInertia>,
         IFormattable
     {
         /// <summary>

@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<Impulse>,
         IConvertible,
         IEquatable<Impulse>,
+        IEquatableQuantity<Impulse>,
         IFormattable
     {
         /// <summary>

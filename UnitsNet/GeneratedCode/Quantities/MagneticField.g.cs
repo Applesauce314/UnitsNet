@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<MagneticField>,
         IConvertible,
         IEquatable<MagneticField>,
+        IEquatableQuantity<MagneticField>,
         IFormattable
     {
         /// <summary>

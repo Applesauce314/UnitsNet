@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<Angle>,
         IConvertible,
         IEquatable<Angle>,
+        IEquatableQuantity<Angle>,
         IFormattable
     {
         /// <summary>

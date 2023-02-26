@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<FuelEfficiency>,
         IConvertible,
         IEquatable<FuelEfficiency>,
+        IEquatableQuantity<FuelEfficiency>,
         IFormattable
     {
         /// <summary>

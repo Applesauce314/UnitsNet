@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<Permittivity>,
         IConvertible,
         IEquatable<Permittivity>,
+        IEquatableQuantity<Permittivity>,
         IFormattable
     {
         /// <summary>

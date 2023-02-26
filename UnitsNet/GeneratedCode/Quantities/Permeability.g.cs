@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<Permeability>,
         IConvertible,
         IEquatable<Permeability>,
+        IEquatableQuantity<Permeability>,
         IFormattable
     {
         /// <summary>

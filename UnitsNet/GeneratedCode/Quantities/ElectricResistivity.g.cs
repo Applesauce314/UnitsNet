@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<ElectricResistivity>,
         IConvertible,
         IEquatable<ElectricResistivity>,
+        IEquatableQuantity<ElectricResistivity>,
         IFormattable
     {
         /// <summary>

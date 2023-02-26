@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<Compressibility>,
         IConvertible,
         IEquatable<Compressibility>,
+        IEquatableQuantity<Compressibility>,
         IFormattable
     {
         /// <summary>

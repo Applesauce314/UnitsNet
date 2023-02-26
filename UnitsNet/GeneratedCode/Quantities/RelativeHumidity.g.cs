@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<RelativeHumidity>,
         IConvertible,
         IEquatable<RelativeHumidity>,
+        IEquatableQuantity<RelativeHumidity>,
         IFormattable
     {
         /// <summary>

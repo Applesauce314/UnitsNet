@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<ElectricConductivity>,
         IConvertible,
         IEquatable<ElectricConductivity>,
+        IEquatableQuantity<ElectricConductivity>,
         IFormattable
     {
         /// <summary>

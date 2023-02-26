@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<PressureChangeRate>,
         IConvertible,
         IEquatable<PressureChangeRate>,
+        IEquatableQuantity<PressureChangeRate>,
         IFormattable
     {
         /// <summary>

@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<TemperatureDelta>,
         IConvertible,
         IEquatable<TemperatureDelta>,
+        IEquatableQuantity<TemperatureDelta>,
         IFormattable
     {
         /// <summary>

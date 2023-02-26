@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<VolumetricHeatCapacity>,
         IConvertible,
         IEquatable<VolumetricHeatCapacity>,
+        IEquatableQuantity<VolumetricHeatCapacity>,
         IFormattable
     {
         /// <summary>

@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<SolidAngle>,
         IConvertible,
         IEquatable<SolidAngle>,
+        IEquatableQuantity<SolidAngle>,
         IFormattable
     {
         /// <summary>

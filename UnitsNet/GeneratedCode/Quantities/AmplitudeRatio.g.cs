@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<AmplitudeRatio>,
         IConvertible,
         IEquatable<AmplitudeRatio>,
+        IEquatableQuantity<AmplitudeRatio>,
         IFormattable
     {
         /// <summary>

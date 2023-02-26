@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<ReciprocalArea>,
         IConvertible,
         IEquatable<ReciprocalArea>,
+        IEquatableQuantity<ReciprocalArea>,
         IFormattable
     {
         /// <summary>

@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<Pressure>,
         IConvertible,
         IEquatable<Pressure>,
+        IEquatableQuantity<Pressure>,
         IFormattable
     {
         /// <summary>

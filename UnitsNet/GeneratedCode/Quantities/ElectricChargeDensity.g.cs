@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<ElectricChargeDensity>,
         IConvertible,
         IEquatable<ElectricChargeDensity>,
+        IEquatableQuantity<ElectricChargeDensity>,
         IFormattable
     {
         /// <summary>

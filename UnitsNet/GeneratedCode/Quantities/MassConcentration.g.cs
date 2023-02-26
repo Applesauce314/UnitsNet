@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<MassConcentration>,
         IConvertible,
         IEquatable<MassConcentration>,
+        IEquatableQuantity<MassConcentration>,
         IFormattable
     {
         /// <summary>

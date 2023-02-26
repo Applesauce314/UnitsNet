@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<LuminousFlux>,
         IConvertible,
         IEquatable<LuminousFlux>,
+        IEquatableQuantity<LuminousFlux>,
         IFormattable
     {
         /// <summary>

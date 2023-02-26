@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<Jerk>,
         IConvertible,
         IEquatable<Jerk>,
+        IEquatableQuantity<Jerk>,
         IFormattable
     {
         /// <summary>

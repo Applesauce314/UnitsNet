@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<ElectricField>,
         IConvertible,
         IEquatable<ElectricField>,
+        IEquatableQuantity<ElectricField>,
         IFormattable
     {
         /// <summary>

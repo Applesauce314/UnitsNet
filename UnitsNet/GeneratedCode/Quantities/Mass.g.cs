@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<Mass>,
         IConvertible,
         IEquatable<Mass>,
+        IEquatableQuantity<Mass>,
         IFormattable
     {
         /// <summary>

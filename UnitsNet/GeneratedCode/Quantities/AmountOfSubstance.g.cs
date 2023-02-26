@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<AmountOfSubstance>,
         IConvertible,
         IEquatable<AmountOfSubstance>,
+        IEquatableQuantity<AmountOfSubstance>,
         IFormattable
     {
         /// <summary>

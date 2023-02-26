@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<ForceChangeRate>,
         IConvertible,
         IEquatable<ForceChangeRate>,
+        IEquatableQuantity<ForceChangeRate>,
         IFormattable
     {
         /// <summary>

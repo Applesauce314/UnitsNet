@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<ElectricCurrent>,
         IConvertible,
         IEquatable<ElectricCurrent>,
+        IEquatableQuantity<ElectricCurrent>,
         IFormattable
     {
         /// <summary>

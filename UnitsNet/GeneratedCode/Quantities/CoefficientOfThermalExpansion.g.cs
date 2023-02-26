@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<CoefficientOfThermalExpansion>,
         IConvertible,
         IEquatable<CoefficientOfThermalExpansion>,
+        IEquatableQuantity<CoefficientOfThermalExpansion>,
         IFormattable
     {
         /// <summary>

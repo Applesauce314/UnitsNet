@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<Speed>,
         IConvertible,
         IEquatable<Speed>,
+        IEquatableQuantity<Speed>,
         IFormattable
     {
         /// <summary>

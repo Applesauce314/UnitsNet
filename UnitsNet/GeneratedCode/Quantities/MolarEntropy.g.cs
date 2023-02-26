@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<MolarEntropy>,
         IConvertible,
         IEquatable<MolarEntropy>,
+        IEquatableQuantity<MolarEntropy>,
         IFormattable
     {
         /// <summary>

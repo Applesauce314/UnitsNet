@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<PowerRatio>,
         IConvertible,
         IEquatable<PowerRatio>,
+        IEquatableQuantity<PowerRatio>,
         IFormattable
     {
         /// <summary>

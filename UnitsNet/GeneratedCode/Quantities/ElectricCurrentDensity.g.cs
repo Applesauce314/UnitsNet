@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<ElectricCurrentDensity>,
         IConvertible,
         IEquatable<ElectricCurrentDensity>,
+        IEquatableQuantity<ElectricCurrentDensity>,
         IFormattable
     {
         /// <summary>

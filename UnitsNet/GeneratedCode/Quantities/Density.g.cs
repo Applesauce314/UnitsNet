@@ -45,6 +45,7 @@ namespace UnitsNet
         IComparable<Density>,
         IConvertible,
         IEquatable<Density>,
+        IEquatableQuantity<Density>,
         IFormattable
     {
         /// <summary>

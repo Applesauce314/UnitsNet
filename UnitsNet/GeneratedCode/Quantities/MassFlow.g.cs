@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<MassFlow>,
         IConvertible,
         IEquatable<MassFlow>,
+        IEquatableQuantity<MassFlow>,
         IFormattable
     {
         /// <summary>

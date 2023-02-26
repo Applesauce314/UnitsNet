@@ -42,6 +42,7 @@ namespace UnitsNet
         IComparable<Entropy>,
         IConvertible,
         IEquatable<Entropy>,
+        IEquatableQuantity<Entropy>,
         IFormattable
     {
         /// <summary>
