@@ -17,6 +17,8 @@ namespace UnitsNet.Tests
 
         public double As(UnitSystem unitSystem ) => throw new NotImplementedException();
 
+        public bool Equals(IQuantity? other, double tolerance, ComparisonType comparisonType) => throw new NotImplementedException();
+
         public string ToString(IFormatProvider? provider) => throw new NotImplementedException();
 
         public string ToString(string? format, IFormatProvider? formatProvider) => throw new NotImplementedException();

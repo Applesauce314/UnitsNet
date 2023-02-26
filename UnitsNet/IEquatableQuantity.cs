@@ -7,7 +7,9 @@ namespace UnitsNet;
 ///     Compare equality to another <typeparamref name="TQuantity"/> within the given absolute or relative tolerance.
 /// </summary>
 /// <typeparam name="TQuantity">Type of quantity.</typeparam>
-public interface IEquatableQuantity<in TQuantity>
+/// <typeparam name="TValueType">The quantity value type, for tolerance checks.</typeparam>
+public interface IEquatableQuantity<in TQuantity, in TValueType>
+    where TQuantity : IQuantity
 {
     /// <summary>
     ///     <para>
@@ -48,5 +50,5 @@ public interface IEquatableQuantity<in TQuantity>
     /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
     /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
     /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-    bool Equals(TQuantity? other, double tolerance, ComparisonType comparisonType);
+    bool Equals(TQuantity? other, TValueType tolerance, ComparisonType comparisonType);
 }
