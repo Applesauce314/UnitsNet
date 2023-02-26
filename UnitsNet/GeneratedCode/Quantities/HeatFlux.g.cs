@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<HeatFlux>,
         IConvertible,
         IEquatable<HeatFlux>,
-        IEquatableQuantity<HeatFlux, double>,
         IFormattable
     {
         /// <summary>

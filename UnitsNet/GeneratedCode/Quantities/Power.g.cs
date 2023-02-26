@@ -43,7 +43,6 @@ namespace UnitsNet
         IComparable<Power>,
         IConvertible,
         IEquatable<Power>,
-        IEquatableQuantity<Power, decimal>,
         IFormattable
     {
         /// <summary>

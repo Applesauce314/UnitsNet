@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<Frequency>,
         IConvertible,
         IEquatable<Frequency>,
-        IEquatableQuantity<Frequency, double>,
         IFormattable
     {
         /// <summary>

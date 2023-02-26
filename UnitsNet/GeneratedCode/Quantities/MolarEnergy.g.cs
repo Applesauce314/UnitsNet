@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<MolarEnergy>,
         IConvertible,
         IEquatable<MolarEnergy>,
-        IEquatableQuantity<MolarEnergy, double>,
         IFormattable
     {
         /// <summary>

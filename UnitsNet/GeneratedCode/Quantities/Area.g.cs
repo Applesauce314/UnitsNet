@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<Area>,
         IConvertible,
         IEquatable<Area>,
-        IEquatableQuantity<Area, double>,
         IFormattable
     {
         /// <summary>

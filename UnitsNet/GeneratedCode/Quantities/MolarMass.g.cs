@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<MolarMass>,
         IConvertible,
         IEquatable<MolarMass>,
-        IEquatableQuantity<MolarMass, double>,
         IFormattable
     {
         /// <summary>

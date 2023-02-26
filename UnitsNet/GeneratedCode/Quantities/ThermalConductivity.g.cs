@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<ThermalConductivity>,
         IConvertible,
         IEquatable<ThermalConductivity>,
-        IEquatableQuantity<ThermalConductivity, double>,
         IFormattable
     {
         /// <summary>

@@ -75,7 +75,6 @@ namespace UnitsNet
         IComparable<{_quantity.Name}>,
         IConvertible,
         IEquatable<{_quantity.Name}>,
-        IEquatableQuantity<{_quantity.Name}, {_quantity.ValueType}>,
         IFormattable");
 
             Writer.WL($@"

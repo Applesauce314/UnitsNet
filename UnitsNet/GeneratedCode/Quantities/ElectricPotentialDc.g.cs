@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<ElectricPotentialDc>,
         IConvertible,
         IEquatable<ElectricPotentialDc>,
-        IEquatableQuantity<ElectricPotentialDc, double>,
         IFormattable
     {
         /// <summary>

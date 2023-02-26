@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<Energy>,
         IConvertible,
         IEquatable<Energy>,
-        IEquatableQuantity<Energy, double>,
         IFormattable
     {
         /// <summary>

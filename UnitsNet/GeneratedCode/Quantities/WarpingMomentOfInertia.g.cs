@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<WarpingMomentOfInertia>,
         IConvertible,
         IEquatable<WarpingMomentOfInertia>,
-        IEquatableQuantity<WarpingMomentOfInertia, double>,
         IFormattable
     {
         /// <summary>

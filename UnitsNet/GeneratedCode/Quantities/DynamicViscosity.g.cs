@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<DynamicViscosity>,
         IConvertible,
         IEquatable<DynamicViscosity>,
-        IEquatableQuantity<DynamicViscosity, double>,
         IFormattable
     {
         /// <summary>

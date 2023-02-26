@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<MagneticFlux>,
         IConvertible,
         IEquatable<MagneticFlux>,
-        IEquatableQuantity<MagneticFlux, double>,
         IFormattable
     {
         /// <summary>

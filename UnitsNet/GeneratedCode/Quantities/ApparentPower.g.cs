@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<ApparentPower>,
         IConvertible,
         IEquatable<ApparentPower>,
-        IEquatableQuantity<ApparentPower, double>,
         IFormattable
     {
         /// <summary>

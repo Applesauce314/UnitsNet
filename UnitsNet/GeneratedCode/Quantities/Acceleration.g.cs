@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<Acceleration>,
         IConvertible,
         IEquatable<Acceleration>,
-        IEquatableQuantity<Acceleration, double>,
         IFormattable
     {
         /// <summary>

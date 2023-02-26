@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<SpecificWeight>,
         IConvertible,
         IEquatable<SpecificWeight>,
-        IEquatableQuantity<SpecificWeight, double>,
         IFormattable
     {
         /// <summary>

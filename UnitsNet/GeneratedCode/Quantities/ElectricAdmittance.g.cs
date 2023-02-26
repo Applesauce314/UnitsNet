@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<ElectricAdmittance>,
         IConvertible,
         IEquatable<ElectricAdmittance>,
-        IEquatableQuantity<ElectricAdmittance, double>,
         IFormattable
     {
         /// <summary>

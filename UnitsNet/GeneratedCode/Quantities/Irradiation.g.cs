@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<Irradiation>,
         IConvertible,
         IEquatable<Irradiation>,
-        IEquatableQuantity<Irradiation, double>,
         IFormattable
     {
         /// <summary>

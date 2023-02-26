@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<Magnetization>,
         IConvertible,
         IEquatable<Magnetization>,
-        IEquatableQuantity<Magnetization, double>,
         IFormattable
     {
         /// <summary>

@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<HeatTransferCoefficient>,
         IConvertible,
         IEquatable<HeatTransferCoefficient>,
-        IEquatableQuantity<HeatTransferCoefficient, double>,
         IFormattable
     {
         /// <summary>

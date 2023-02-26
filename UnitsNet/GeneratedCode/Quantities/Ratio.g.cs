@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<Ratio>,
         IConvertible,
         IEquatable<Ratio>,
-        IEquatableQuantity<Ratio, double>,
         IFormattable
     {
         /// <summary>

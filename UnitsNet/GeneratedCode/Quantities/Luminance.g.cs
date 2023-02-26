@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<Luminance>,
         IConvertible,
         IEquatable<Luminance>,
-        IEquatableQuantity<Luminance, double>,
         IFormattable
     {
         /// <summary>

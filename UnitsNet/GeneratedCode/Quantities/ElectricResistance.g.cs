@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<ElectricResistance>,
         IConvertible,
         IEquatable<ElectricResistance>,
-        IEquatableQuantity<ElectricResistance, double>,
         IFormattable
     {
         /// <summary>

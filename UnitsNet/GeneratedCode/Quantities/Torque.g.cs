@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<Torque>,
         IConvertible,
         IEquatable<Torque>,
-        IEquatableQuantity<Torque, double>,
         IFormattable
     {
         /// <summary>

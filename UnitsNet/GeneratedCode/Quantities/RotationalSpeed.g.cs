@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<RotationalSpeed>,
         IConvertible,
         IEquatable<RotationalSpeed>,
-        IEquatableQuantity<RotationalSpeed, double>,
         IFormattable
     {
         /// <summary>

@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<ApparentEnergy>,
         IConvertible,
         IEquatable<ApparentEnergy>,
-        IEquatableQuantity<ApparentEnergy, double>,
         IFormattable
     {
         /// <summary>
@@ -141,7 +140,7 @@ namespace UnitsNet
         public static ApparentEnergy AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>

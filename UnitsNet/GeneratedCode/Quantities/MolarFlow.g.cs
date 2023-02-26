@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<MolarFlow>,
         IConvertible,
         IEquatable<MolarFlow>,
-        IEquatableQuantity<MolarFlow, double>,
         IFormattable
     {
         /// <summary>

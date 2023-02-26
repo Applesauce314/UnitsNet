@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<ThermalResistance>,
         IConvertible,
         IEquatable<ThermalResistance>,
-        IEquatableQuantity<ThermalResistance, double>,
         IFormattable
     {
         /// <summary>

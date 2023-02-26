@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<TemperatureGradient>,
         IConvertible,
         IEquatable<TemperatureGradient>,
-        IEquatableQuantity<TemperatureGradient, double>,
         IFormattable
     {
         /// <summary>

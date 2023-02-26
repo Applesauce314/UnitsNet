@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<Irradiance>,
         IConvertible,
         IEquatable<Irradiance>,
-        IEquatableQuantity<Irradiance, double>,
         IFormattable
     {
         /// <summary>

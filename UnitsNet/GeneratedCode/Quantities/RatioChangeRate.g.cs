@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<RatioChangeRate>,
         IConvertible,
         IEquatable<RatioChangeRate>,
-        IEquatableQuantity<RatioChangeRate, double>,
         IFormattable
     {
         /// <summary>

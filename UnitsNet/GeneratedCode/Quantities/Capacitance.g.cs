@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<Capacitance>,
         IConvertible,
         IEquatable<Capacitance>,
-        IEquatableQuantity<Capacitance, double>,
         IFormattable
     {
         /// <summary>

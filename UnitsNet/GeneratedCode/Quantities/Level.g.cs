@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<Level>,
         IConvertible,
         IEquatable<Level>,
-        IEquatableQuantity<Level, double>,
         IFormattable
     {
         /// <summary>

@@ -46,7 +46,6 @@ namespace UnitsNet
         IComparable<BitRate>,
         IConvertible,
         IEquatable<BitRate>,
-        IEquatableQuantity<BitRate, decimal>,
         IFormattable
     {
         /// <summary>

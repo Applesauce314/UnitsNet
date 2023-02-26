@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<LinearPowerDensity>,
         IConvertible,
         IEquatable<LinearPowerDensity>,
-        IEquatableQuantity<LinearPowerDensity, double>,
         IFormattable
     {
         /// <summary>

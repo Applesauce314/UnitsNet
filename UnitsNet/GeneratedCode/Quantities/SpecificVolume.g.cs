@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<SpecificVolume>,
         IConvertible,
         IEquatable<SpecificVolume>,
-        IEquatableQuantity<SpecificVolume, double>,
         IFormattable
     {
         /// <summary>

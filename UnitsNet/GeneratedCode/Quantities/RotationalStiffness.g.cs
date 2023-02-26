@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<RotationalStiffness>,
         IConvertible,
         IEquatable<RotationalStiffness>,
-        IEquatableQuantity<RotationalStiffness, double>,
         IFormattable
     {
         /// <summary>

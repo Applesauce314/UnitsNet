@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<Duration>,
         IConvertible,
         IEquatable<Duration>,
-        IEquatableQuantity<Duration, double>,
         IFormattable
     {
         /// <summary>

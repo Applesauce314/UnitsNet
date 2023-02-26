@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<BrakeSpecificFuelConsumption>,
         IConvertible,
         IEquatable<BrakeSpecificFuelConsumption>,
-        IEquatableQuantity<BrakeSpecificFuelConsumption, double>,
         IFormattable
     {
         /// <summary>

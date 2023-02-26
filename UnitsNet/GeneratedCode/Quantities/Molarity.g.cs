@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<Molarity>,
         IConvertible,
         IEquatable<Molarity>,
-        IEquatableQuantity<Molarity, double>,
         IFormattable
     {
         /// <summary>

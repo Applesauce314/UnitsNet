@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<Turbidity>,
         IConvertible,
         IEquatable<Turbidity>,
-        IEquatableQuantity<Turbidity, double>,
         IFormattable
     {
         /// <summary>

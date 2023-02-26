@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<ReciprocalLength>,
         IConvertible,
         IEquatable<ReciprocalLength>,
-        IEquatableQuantity<ReciprocalLength, double>,
         IFormattable
     {
         /// <summary>

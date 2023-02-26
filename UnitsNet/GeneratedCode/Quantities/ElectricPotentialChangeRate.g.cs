@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<ElectricPotentialChangeRate>,
         IConvertible,
         IEquatable<ElectricPotentialChangeRate>,
-        IEquatableQuantity<ElectricPotentialChangeRate, double>,
         IFormattable
     {
         /// <summary>

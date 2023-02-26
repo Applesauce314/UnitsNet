@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<MassFlux>,
         IConvertible,
         IEquatable<MassFlux>,
-        IEquatableQuantity<MassFlux, double>,
         IFormattable
     {
         /// <summary>

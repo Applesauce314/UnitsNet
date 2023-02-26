@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<ForcePerLength>,
         IConvertible,
         IEquatable<ForcePerLength>,
-        IEquatableQuantity<ForcePerLength, double>,
         IFormattable
     {
         /// <summary>

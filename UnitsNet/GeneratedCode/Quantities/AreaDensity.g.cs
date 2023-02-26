@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<AreaDensity>,
         IConvertible,
         IEquatable<AreaDensity>,
-        IEquatableQuantity<AreaDensity, double>,
         IFormattable
     {
         /// <summary>

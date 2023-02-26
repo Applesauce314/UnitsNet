@@ -42,7 +42,6 @@ namespace UnitsNet
         IComparable<VitaminA>,
         IConvertible,
         IEquatable<VitaminA>,
-        IEquatableQuantity<VitaminA, double>,
         IFormattable
     {
         /// <summary>

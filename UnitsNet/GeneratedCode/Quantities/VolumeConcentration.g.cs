@@ -45,7 +45,6 @@ namespace UnitsNet
         IComparable<VolumeConcentration>,
         IConvertible,
         IEquatable<VolumeConcentration>,
-        IEquatableQuantity<VolumeConcentration, double>,
         IFormattable
     {
         /// <summary>

@@ -43,7 +43,6 @@ namespace UnitsNet
         IComparable<Information>,
         IConvertible,
         IEquatable<Information>,
-        IEquatableQuantity<Information, decimal>,
         IFormattable
     {
         /// <summary>
