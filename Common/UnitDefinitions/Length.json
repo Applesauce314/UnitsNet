@@ -303,6 +303,36 @@
       ]
     },
     {
+      "SingularName": "WpfDeviceIndependentUnit",
+      "PluralName": "WpfDeviceIndependentUnits",
+      "BaseUnits": {
+        "L": "WpfDeviceIndependentUnits"
+      },
+      "FromUnitToBaseFunc": "({x} / 96) * 2.54e-2",
+      "FromBaseToUnitFunc": "({x} / 2.54e-2) * 96",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "diu" ]
+        }
+      ]
+    },
+        {
+      "SingularName": "XamarinDeviceIndependentUnit",
+      "PluralName": "XamarinDeviceIndependentUnits",
+      "BaseUnits": {
+        "L": "XamarinDeviceIndependentUnits"
+      },
+      "FromUnitToBaseFunc": "({x} / 160) * 2.54e-2",
+      "FromBaseToUnitFunc": "({x} / 2.54e-2) * 160",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "diu" ]
+        }
+      ]
+    },
+        {
       "SingularName": "Twip",
       "PluralName": "Twips",
       "BaseUnits": {
