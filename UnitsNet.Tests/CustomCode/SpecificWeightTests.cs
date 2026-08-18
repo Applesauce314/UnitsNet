@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using Xunit;
@@ -46,6 +46,13 @@ namespace UnitsNet.Tests
         {
             Pressure pressure = SpecificWeight.FromNewtonsPerCubicMeter(10) * Length.FromMeters(2);
             Assert.Equal(Pressure.FromPascals(20), pressure);
+        }
+
+        [Fact]
+        public void SpecificWeightTimesVolumeEqualsForce()
+        {
+            Force force = SpecificWeight.FromNewtonsPerCubicMeter(10) * Volume.FromCubicMeters(2);
+            Assert.Equal(Force.FromNewtons(20), force);
         }
 
         [Fact]

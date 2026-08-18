@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -20,7 +20,7 @@ public class TryParseInvalidUnitBenchmarks
     private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
     private readonly Random _random = new(42);
     private string[] _invalidUnits = [];
-
+    
     [GlobalSetup]
     public void Setup()
     {

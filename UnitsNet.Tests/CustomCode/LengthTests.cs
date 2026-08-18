@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Globalization;
@@ -105,10 +105,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void LengthTimesAreaDensityEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = Length.FromMeters(2) * AreaDensity.FromKilogramsPerSquareMeter(10);
+            Assert.Equal(LinearDensity.FromKilogramsPerMeter(20), linearDensity);
+        }
+
+        [Fact]
         public void LengthTimesAreaEqualsVolume()
         {
             Volume volume = Length.FromMeters(3) * Area.FromSquareMeters(9);
             Assert.Equal(volume, Volume.FromCubicMeters(27));
+        }
+
+        [Fact]
+        public void LengthTimesDensityEqualsAreaDensity()
+        {
+            AreaDensity areaDensity = Length.FromMeters(2) * Density.FromKilogramsPerCubicMeter(10);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(20), areaDensity);
         }
 
         [Fact]
@@ -179,13 +193,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void NegativeLengthToStonePoundsReturnsCorrectValues()
         {
-            var negativeLength = Length.FromInches(-1.0);
+            var negativeLength = Length.FromInches(-1);
             var feetInches = negativeLength.FeetInches;
 
             Assert.Equal(0, feetInches.Feet);
-            Assert.Equal(-1.0, feetInches.Inches);
+            Assert.Equal(-1, feetInches.Inches);
 
-            negativeLength = Length.FromInches(-25.0);
+            negativeLength = Length.FromInches(-25);
             feetInches = negativeLength.FeetInches;
 
             Assert.Equal(-2, feetInches.Feet);
@@ -195,31 +209,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void Constructor_UnitSystemNull_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Length(1.0, unitSystem: null!));
+            Assert.Throws<ArgumentNullException>(() => new Length(1, unitSystem: null!));
         }
 
         [Fact]
         public void Constructor_UnitSystemSI_AssignsSIUnit()
         {
-            var length = new Length(1.0, UnitSystem.SI);
+            var length = new Length(1, UnitSystem.SI);
             Assert.Equal(LengthUnit.Meter, length.Unit);
         }
 
         [Fact]
         public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
-            var inches = new Length(2.0, LengthUnit.Inch);
-            Assert.Equal(0.0508, inches.As(UnitSystem.SI));
+            var inches = new Length(2, LengthUnit.Inch);
+            Assert.Equal(0.0508m, inches.As(UnitSystem.SI));
         }
 
         [Fact]
         public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
         {
-            var inches = new Length(2.0, LengthUnit.Inch);
+            var inches = new Length(2, LengthUnit.Inch);
 
             var inSI = inches.ToUnit(UnitSystem.SI);
 
-            Assert.Equal(0.0508, inSI.Value);
+            Assert.Equal(0.0508m, inSI.Value);
             Assert.Equal(LengthUnit.Meter, inSI.Unit);
         }
 
@@ -231,10 +245,11 @@ namespace UnitsNet.Tests
         [InlineData(2.0, 0.5)]
         public static void InverseReturnsReciprocalLength(double value, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var length = new Length(value, LengthUnit.Meter);
             var inverseLength = length.Inverse();
 
-            Assert.Equal(expected, inverseLength.InverseMeters);
+            Assert.Equal(expectedValue, inverseLength.InverseMeters);
         }
 
         [Theory]

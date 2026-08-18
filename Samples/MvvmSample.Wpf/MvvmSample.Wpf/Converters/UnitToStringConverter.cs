@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -31,7 +31,7 @@ namespace WpfMVVMSample.Converters
             if (!(value is IQuantity quantity))
                 throw new ArgumentException("Expected value of type UnitsNet.IQuantity.", nameof(value));
 
-            Enum unitEnumValue = _settings.GetDefaultUnit(quantity.GetQuantityInfo().UnitType);
+            Enum unitEnumValue = _settings.GetDefaultUnit(quantity.QuantityInfo.UnitType);
             int significantDigits = _settings.SignificantDigits;
 
             IQuantity quantityInUnit = quantity.ToUnit(unitEnumValue);

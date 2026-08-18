@@ -1,10 +1,11 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnitsNet.CustomCode.Units;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using UnitsNet.Wrappers;
 using Xunit;
@@ -173,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReferencePressureReferences_ReturnsTheExpectedEnumValues()
         {
-            IEnumerable<PressureReference> expectedValues = Enum.GetValues<PressureReference>();
+            IEnumerable<PressureReference> expectedValues = EnumHelper.GetValues<PressureReference>();
 
             PressureReference[] actualValues = ReferencePressure.References;
 
@@ -213,6 +214,20 @@ namespace UnitsNet.Tests
         {
             var refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
             Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Gauge.Atmospheres);
+        }
+
+        [Fact]
+        public void PressureDividedByAccelerationEqualsAreaDensity()
+        {
+            var areaDensity = Pressure.FromPascals(20) / Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(10), areaDensity);
+        }
+
+        [Fact]
+        public void PressureDividedByAreaDensityEqualsAcceleration()
+        {
+            var acceleration = Pressure.FromPascals(20) / AreaDensity.FromKilogramsPerSquareMeter(2);
+            Assert.Equal(Acceleration.FromMetersPerSecondSquared(10), acceleration);
         }
 
         [Fact]
@@ -289,16 +304,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void PressureFromElevation_ConvertsWithRounding()
         {
-            var pressureFromElevation = Pressure.FromElevation(new Length(129149.9769457631, LengthUnit.Foot));
-            Assert.Equal(1, pressureFromElevation.Pascals, PascalsTolerance);
+            var pressureFromElevation = Pressure.FromElevation(new Length(129149.9769457631m, LengthUnit.Foot), significantDigits: 13);
+            Assert.Equal(1, pressureFromElevation.Pascals);
         }
 
         [Fact]
         public void ElevationFromPressure_ConvertsWithRounding()
         {
-            Length elevationFromPressure = Pressure.FromPascals(1).ToElevation();
+            Length elevationFromPressure = Pressure.FromPascals(1).ToElevation(significantDigits: 15);
             Assert.Equal(LengthUnit.Foot, elevationFromPressure.Unit);
-            Assert.Equal(129149.976945763, elevationFromPressure.Value, 9);
+            Assert.Equal(129149.976945763m, elevationFromPressure.Value);
+        }
+
+        [Fact]
+        public void PressureTimesVolumeFlowEqualsLeakRate()
+        {
+            Pressure pressure = Pressure.FromPascals(2);
+            VolumeFlow volumeFlow = VolumeFlow.FromCubicMetersPerSecond(3);
+            LeakRate expected = LeakRate.FromPascalCubicMetersPerSecond(6);
+
+            Assert.Equal(expected, pressure * volumeFlow);
+            Assert.Equal(expected, volumeFlow * pressure);
+            Assert.Equal(volumeFlow, expected / pressure);
+            Assert.Equal(pressure, expected / volumeFlow);
         }
     }
 }

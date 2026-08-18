@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using Xunit;
@@ -60,6 +60,19 @@ namespace UnitsNet.Tests
         {
             Energy j = ElectricPotential.FromVolts(potential) * ElectricCharge.FromCoulombs(current);
             Assert.Equal(expected, j.Joules);
+        }
+
+        [Fact]
+        public void ElectricPotentialTimesElectricConductanceEqualsElectricCurrent()
+        {
+            ElectricPotential potential = ElectricPotential.FromVolts(2);
+            ElectricConductance conductance = ElectricConductance.FromSiemens(3);
+            ElectricCurrent expected = ElectricCurrent.FromAmperes(6);
+
+            Assert.Equal(expected, potential * conductance);
+            Assert.Equal(expected, conductance * potential);
+            Assert.Equal(conductance, expected / potential);
+            Assert.Equal(potential, expected / conductance);
         }
     }
 }

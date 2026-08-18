@@ -1,7 +1,8 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Globalization;
+using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -9,7 +10,7 @@ namespace UnitsNet
 {
     public partial struct Length
     {
-        internal const double InchesInOneFoot = 12;
+        private static readonly QuantityValue InchesInOneFoot = 12;
 
         /// <summary>
         ///     Converts the length to a customary feet/inches combination.
@@ -18,18 +19,15 @@ namespace UnitsNet
         {
             get
             {
-                var inInches = Inches;
-                var feet = Math.Truncate(inInches / InchesInOneFoot);
-                var inches = inInches % InchesInOneFoot;
-
-                return new FeetInches(feet, inches);
+                QuantityValue totalInches = Inches;
+                return new FeetInches((BigInteger) (totalInches / InchesInOneFoot), totalInches % InchesInOneFoot);
             }
         }
 
         /// <summary>
         ///     Get length from combination of feet and inches.
         /// </summary>
-        public static Length FromFeetInches(double feet, double inches)
+        public static Length FromFeetInches(QuantityValue feet, QuantityValue inches)
         {
             return FromInches(InchesInOneFoot * feet + inches);
         }
@@ -81,7 +79,7 @@ namespace UnitsNet
             if (TryParse(str, formatProvider, out result))
                 return true;
 
-            var quantityParser = UnitsNetSetup.Default.QuantityParser;
+            QuantityParser quantityParser = QuantityParser.Default;
             string footRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, formatProvider, matchEntireString: false);
             string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider, matchEntireString: false);
 
@@ -121,7 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Construct from feet and inches.
         /// </summary>
-        public FeetInches(double feet, double inches)
+        public FeetInches(BigInteger feet, QuantityValue inches)
         {
             Feet = feet;
             Inches = inches;
@@ -130,12 +128,12 @@ namespace UnitsNet
         /// <summary>
         ///     The feet value it was constructed with.
         /// </summary>
-        public double Feet { get; }
+        public BigInteger Feet { get; }
 
         /// <summary>
         ///     The inches value it was constructed with.
         /// </summary>
-        public double Inches { get; }
+        public QuantityValue Inches { get; }
 
         /// <inheritdoc cref="ToString(IFormatProvider)"/>
         public override string ToString()
@@ -153,10 +151,13 @@ namespace UnitsNet
         /// </param>
         public string ToString(IFormatProvider? cultureInfo)
         {
-            cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
+            if (cultureInfo is not CultureInfo unitLocalizationCulture)
+            {
+                cultureInfo = unitLocalizationCulture = CultureInfo.CurrentCulture;
+            }
 
-            var footUnit = Length.GetAbbreviation(LengthUnit.Foot, cultureInfo);
-            var inchUnit = Length.GetAbbreviation(LengthUnit.Inch, cultureInfo);
+            var footUnit = Length.GetAbbreviation(LengthUnit.Foot, unitLocalizationCulture);
+            var inchUnit = Length.GetAbbreviation(LengthUnit.Inch, unitLocalizationCulture);
 
 
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
@@ -252,7 +253,7 @@ namespace UnitsNet
 
             if (numerator > 0)
             {
-                int GreatestCommonDivisor(int a, int b)
+                static int GreatestCommonDivisor(int a, int b)
                 {
                     while (a != 0 && b != 0)
                     {

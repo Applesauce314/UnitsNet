@@ -1,0 +1,26 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <!-- Build-only paths below mirror System.Text.Json's netstandard2.0 dependency versions. -->
+    <MicrosoftBclAsyncInterfacesVersion>10.0.0</MicrosoftBclAsyncInterfacesVersion>
+    <SystemBuffersVersion>4.6.1</SystemBuffersVersion>
+    <SystemIoPipelinesVersion>10.0.0</SystemIoPipelinesVersion>
+    <SystemMemoryVersion>4.6.3</SystemMemoryVersion>
+    <SystemNumericsVectorsVersion>4.6.1</SystemNumericsVectorsVersion>
+    <SystemRuntimeCompilerServicesUnsafeVersion>6.1.2</SystemRuntimeCompilerServicesUnsafeVersion>
+    <SystemTextEncodingsWebVersion>10.0.0</SystemTextEncodingsWebVersion>
+    <SystemTextJsonVersion>10.0.0</SystemTextJsonVersion>
+    <SystemThreadingTasksExtensionsVersion>4.6.3</SystemThreadingTasksExtensionsVersion>
+    <UnitsNetModularPublishedVersion
+        Condition="'$(UnitsNetModularPublishedVersion)' == ''">6.0.0-alpha.2</UnitsNetModularPublishedVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="MinVer" Version="7.0.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.5.1" />
+    <PackageVersion Include="System.Text.Json" Version="$(SystemTextJsonVersion)" />
+    <PackageVersion Include="UnitsNet.Modular" Version="$(UnitsNetModularPublishedVersion)" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
+  </ItemGroup>
+</Project>

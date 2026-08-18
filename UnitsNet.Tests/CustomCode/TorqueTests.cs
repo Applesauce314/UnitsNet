@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using Xunit;
@@ -44,6 +44,10 @@ namespace UnitsNet.Tests
         protected override double NewtonMetersInOneNewtonMeter => 1;
 
         protected override double NewtonMillimetersInOneNewtonMeter => 1000;
+
+        protected override double OunceForceFeetInOneNewtonMeter => 11.800994388436246;
+
+        protected override double OunceForceInchesInOneNewtonMeter => 141.61193266123496;
 
         protected override double PoundForceFeetInOneNewtonMeter => 0.737562149277;
 

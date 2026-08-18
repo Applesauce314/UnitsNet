@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+using System.Globalization;
+using UnitsNet.Tests.Helpers;
 using Xunit;
 
 namespace UnitsNet.Tests;

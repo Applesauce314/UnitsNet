@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Linq.Expressions;
 
 namespace UnitsNet
 {
+#if COMPILED_LAMBDAS_ENABLED
     /// <summary>
     /// Compiled lambda expressions that can be invoked with generic run-time parameters. This is used for performance as
     /// it is far faster than reflection based alternatives.
@@ -309,4 +310,5 @@ namespace UnitsNet
             return lambda.Compile();
         }
     }
+#endif
 }

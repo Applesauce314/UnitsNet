@@ -20,6 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Fractions" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="NuGet.Protocol" />
     <PackageReference Include="Serilog" />

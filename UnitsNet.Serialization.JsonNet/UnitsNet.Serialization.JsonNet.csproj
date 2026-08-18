@@ -2,7 +2,7 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet.Serialization.JsonNet</PackageId>
-    <Version>6.0.0-pre019</Version>
+    <Version>6.0.0-pre021</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET Serialization with Json.NET</Title>
     <Description>A helper library for serializing and deserializing types in Units.NET using Json.NET.</Description>
@@ -15,6 +15,7 @@
     <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>Upgrade JSON.NET to 12.0.3. Support arrays.</PackageReleaseNotes>
   </PropertyGroup>
 
@@ -51,6 +52,7 @@
   <!-- Files to include in nuget package -->
   <ItemGroup>
     <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/" />
+    <None Include="../README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
 
 </Project>

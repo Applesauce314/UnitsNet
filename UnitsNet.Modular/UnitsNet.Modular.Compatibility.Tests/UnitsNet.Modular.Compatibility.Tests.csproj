@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Fixture sources compile only into their aliased legacy and generated assemblies. -->
+    <Compile Remove="Fixtures/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Fixtures/Generated/UnitsNet.Modular.Compatibility.GeneratedFixture.csproj">
+      <Aliases>Generated</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="Fixtures/Legacy/UnitsNet.Modular.Compatibility.LegacyFixture.csproj">
+      <Aliases>LegacyScenario</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="../../UnitsNet/UnitsNet.csproj">
+      <Aliases>Legacy</Aliases>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

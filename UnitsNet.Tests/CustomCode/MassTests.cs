@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -141,17 +141,17 @@ namespace UnitsNet.Tests
         [Fact]
         public void NegativeMassToStonePoundsReturnsCorrectValues()
         {
-            var negativeMass = Mass.FromPounds(-1.0);
+            var negativeMass = Mass.FromPounds(-1);
             var stonePounds = negativeMass.StonePounds;
 
             Assert.Equal(0, stonePounds.Stone);
-            Assert.Equal(-1.0, stonePounds.Pounds);
+            Assert.Equal(-1, stonePounds.Pounds);
 
-            negativeMass = Mass.FromPounds(-25.0);
+            negativeMass = Mass.FromPounds(-25);
             stonePounds = negativeMass.StonePounds;
 
-            Assert.Equal(-1.0, stonePounds.Stone);
-            Assert.Equal(-11.0, stonePounds.Pounds);
+            Assert.Equal(-1, stonePounds.Stone);
+            Assert.Equal(-11, stonePounds.Pounds);
         }
 
         [Theory]

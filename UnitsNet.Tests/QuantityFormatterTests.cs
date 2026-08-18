@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -95,7 +95,7 @@ namespace UnitsNet.Tests
         {
             var length = Length.FromMeters(123456789.987654321);
 
-            var expected = string.Format(CultureInfo.CurrentCulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
+            var expected = $"{length.Value.ToString(format, CultureInfo.CurrentCulture)} {Length.GetAbbreviation(length.Unit)}";
             Assert.Equal(expected, QuantityFormatter.Default.Format(length, format));
         }
 
@@ -106,6 +106,10 @@ namespace UnitsNet.Tests
         [InlineData("v")]
         [InlineData("Q")]
         [InlineData("q")]
+        [InlineData("A")]
+        [InlineData("a0")]
+        [InlineData("S")]
+        [InlineData("s2")]
         [InlineData("C")]
         [InlineData("C0")]
         [InlineData("C1")]
@@ -173,7 +177,7 @@ namespace UnitsNet.Tests
         {
             var length = Length.FromMeters(123456789.987654321);
 
-            var expected = string.Format(CultureInfo.CurrentCulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
+            var expected = $"{length.Value.ToString(format, CultureInfo.CurrentCulture)} {Length.GetAbbreviation(length.Unit)}";
             Assert.Equal(expected, QuantityFormatter.Default.Format(length, format));
         }
 
@@ -196,5 +200,6 @@ namespace UnitsNet.Tests
             var actual = QuantityFormatter.Format(length, "G");
             Assert.Equal(expected, actual);
         }
+
     }
 }

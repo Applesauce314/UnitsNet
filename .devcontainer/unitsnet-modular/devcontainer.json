@@ -1,0 +1,22 @@
+{
+  "name": "UnitsNet.Modular samples",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:10.0-noble",
+  "postCreateCommand": "dotnet build UnitsNet.Modular/Samples/UnitsNet.Modular.Samples.slnx -p:Platform=ProjectReferences",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit"
+      ],
+      "settings": {
+        "dotnet.defaultSolution": "UnitsNet.Modular/Samples/UnitsNet.Modular.Samples.slnx",
+        "csharp.debug.console": "integratedTerminal",
+        "terminal.integrated.cwd": "${workspaceFolder}/UnitsNet.Modular/Samples"
+      }
+    },
+    "codespaces": {
+      "openFiles": [
+        "UnitsNet.Modular/Samples/README.md"
+      ]
+    }
+  }
+}

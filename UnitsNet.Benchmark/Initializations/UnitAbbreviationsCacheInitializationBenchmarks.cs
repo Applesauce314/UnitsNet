@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using BenchmarkDotNet.Attributes;
@@ -46,5 +46,26 @@ public class UnitAbbreviationsCacheInitializationBenchmarks
         var cache = new UnitAbbreviationsCache([Mass.Info]);
         cache.MapUnitToDefaultAbbreviation(MassUnit.Gram, "zz");
         return cache.GetDefaultAbbreviation(MassUnit.Gram);
+    }
+
+    [Benchmark]
+    public string DefaultWithoutLookup()
+    {
+        var cache = UnitAbbreviationsCache.CreateDefault();
+        return Mass.GetAbbreviation(Mass.BaseUnit);
+    }
+
+    [Benchmark]
+    public string EmptyWithoutLookup()
+    {
+        var cache = new UnitAbbreviationsCache();
+        return Mass.GetAbbreviation(Mass.BaseUnit);
+    }
+
+    [Benchmark]
+    public string WithSpecificQuantityWithoutLookup()
+    {
+        var cache = new UnitAbbreviationsCache([Mass.Info]);
+        return Mass.GetAbbreviation(Mass.BaseUnit);
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 #if NET8_0_OR_GREATER
 using System.Collections.Frozen;
 using QuantityByTypeLookupDictionary = System.Collections.Frozen.FrozenDictionary<System.Type, UnitsNet.QuantityInfo>;
@@ -77,6 +77,8 @@ public class QuantityInfoLookup
     /// </remarks>
     public QuantityInfoLookup(IEnumerable<QuantityInfo> quantityInfos)
     {
+        if (quantityInfos is null) throw new ArgumentNullException(nameof(quantityInfos));
+
         _quantities = quantityInfos as QuantityInfo[] ?? quantityInfos.ToArray();
         _quantitiesByName = new Lazy<QuantityByNameLookupDictionary>(GroupQuantitiesByName);
         _quantitiesByType = new Lazy<QuantityByTypeLookupDictionary>(GroupQuantitiesByType);
@@ -98,6 +100,23 @@ public class QuantityInfoLookup
     ///     All quantity information objects, such as <see cref="Length.Info" /> and <see cref="Mass.Info" />.
     /// </summary>
     public IReadOnlyList<QuantityInfo> Infos => _quantities;
+
+    internal static QuantityInfoLookup Create(IEnumerable<QuantityInfo> defaultQuantities, Action<QuantitiesSelector> configureQuantities)
+    {
+        if (defaultQuantities is null) throw new ArgumentNullException(nameof(defaultQuantities));
+        if (configureQuantities is null) throw new ArgumentNullException(nameof(configureQuantities));
+
+        var selector = new QuantitiesSelector(() => defaultQuantities);
+        configureQuantities(selector);
+        return Create(selector);
+    }
+
+    internal static QuantityInfoLookup Create(QuantitiesSelector selector)
+    {
+        if (selector is null) throw new ArgumentNullException(nameof(selector));
+
+        return new QuantityInfoLookup(selector.GetQuantityInfos());
+    }
 
     /// <summary>
     ///     Retrieves the <see cref="QuantityInfo" /> associated with the specified quantity type.
@@ -167,7 +186,7 @@ public class QuantityInfoLookup
     /// <param name="unit">Unit enum value.</param>
     /// <returns>An <see cref="IQuantity" /> object.</returns>
     /// <exception cref="UnitNotFoundException">Unit value is not a know unit enum type.</exception>
-    public IQuantity From(double value, UnitKey unit)
+    public IQuantity From(QuantityValue value, UnitKey unit)
     {
         return GetUnitInfo(unit).From(value);
     }
@@ -184,14 +203,14 @@ public class QuantityInfoLookup
     /// <returns>
     ///     <c>true</c> if the quantity was successfully created; otherwise, <c>false</c>.
     /// </returns>
-    public bool TryFrom(double value, [NotNullWhen(true)] Enum? unit, [NotNullWhen(true)] out IQuantity? quantity)
+    public bool TryFrom(QuantityValue value, [NotNullWhen(true)] Enum? unit, [NotNullWhen(true)] out IQuantity? quantity)
     {
         if (unit == null)
         {
             quantity = null;
             return false;
         }
-
+        
         if (!TryGetUnitInfo(unit, out UnitInfo? unitInfo))
         {
             quantity = null;

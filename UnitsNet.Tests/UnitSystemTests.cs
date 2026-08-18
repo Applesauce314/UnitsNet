@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -34,11 +34,20 @@ namespace UnitsNet.Tests
         [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, null, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
         [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, null, LuminousIntensityUnit.Candela)]
         [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, null)]
-        public void ConstructorThrowsArgumentExceptionWithUndefinedUnits(LengthUnit? length, MassUnit? mass, DurationUnit? time, ElectricCurrentUnit? current,
+        [InlineData(LengthUnit.Meter, null, null, null, null, null, null)]
+        public void ConstructorSupportsPartialDimensions(LengthUnit? length, MassUnit? mass, DurationUnit? time, ElectricCurrentUnit? current,
             TemperatureUnit? temperature, AmountOfSubstanceUnit? amount, LuminousIntensityUnit? luminousIntensity)
         {
             var baseUnits = new BaseUnits(length, mass, time, current, temperature, amount, luminousIntensity);
-            Assert.Throws<ArgumentException>(() => new UnitSystem(baseUnits));
+            var unitSystem = new UnitSystem(baseUnits);
+
+            Assert.Equal(baseUnits, unitSystem.BaseUnits);
+        }
+
+        [Fact]
+        public void ConstructorThrowsArgumentExceptionWithUndefinedUnits()
+        {
+            Assert.Throws<ArgumentException>(() => new UnitSystem(BaseUnits.Undefined));
         }
 
         [Fact]

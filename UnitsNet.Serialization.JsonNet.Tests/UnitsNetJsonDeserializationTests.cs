@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using Newtonsoft.Json;
@@ -296,7 +296,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 """;
 
             Length deserialized = DeserializeObject<Length>(json);
-            Assert.Equal(10.5, deserialized.Value);
+            Assert.Equal(10.5m, deserialized.Value);
             Assert.Equal(LengthUnit.Centimeter, deserialized.Unit);
         }
 
@@ -308,7 +308,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         ///     discriminator to describe whether the value was double or decimal.
         ///     <br/><br/>
         ///     <see cref="double"/> based quantities were serialized with <see cref="UnitsNetBaseJsonConverter{T}.ValueUnit"/> DTO, with <c>double Value</c> + <c>string Unit</c> properties.<br />
-        ///     <see cref="decimal"/> based quantities were serialized with <see cref="UnitsNetBaseJsonConverter{T}.ExtendedValueUnit"/> DTO, extending with ValueString and ValueType properties.
         /// </summary>
         [Fact]
         public void CanDeserializeLegacyDecimalQuantityJson()
@@ -324,7 +323,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 """;
 
             Information deserialized = DeserializeObject<Information>(json);
-            Assert.Equal(10.5, deserialized.Value);
+            Assert.Equal(10.5m, deserialized.Value);
             Assert.Equal(InformationUnit.Kilobyte, deserialized.Unit);
         }
 

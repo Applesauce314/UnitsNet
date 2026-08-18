@@ -28,6 +28,8 @@ Sometimes we just have to say no, sorry! We simply want to avoid bloating the li
 - [x] Can be represented by a `double` numeric value, integer values are not well supported and may suffer from precision errors
 - [x] Is not [dimensionless/unitless](https://en.wikipedia.org/wiki/Dimensionless_quantity) (consider using `Ratio`)
 
+Single-unit quantities are the exception. If a proposed quantity has only one unit, it needs stronger justification: the quantity must be widely used as a typed quantity representation on its own, not just as a unit abbreviation with no conversions.
+
 ### A unit is a good fit to add to a quantity, if it
 
 - [x] Is well documented and unambiguous, e.g. has a wiki page or found in online unit converters
@@ -51,6 +53,7 @@ Ok, enough of that. Let's move on!
 ## Quick Summary of Steps
 
 Units.NET uses [CodeGen](https://github.com/angularsen/UnitsNet/tree/master/CodeGen), a C# command line app that reads [JSON files with quantity and unit definitions](https://github.com/angularsen/UnitsNet/tree/master/Common/UnitDefinitions) and generates C# code.
+See the [Quantity and Unit Definition Schema](quantity-and-unit-definition-schema.md) for a field-by-field reference.
 
 To add a quantity or a unit:
 
@@ -66,6 +69,7 @@ Not too difficult. Below are the detailed steps.
 
 * Place in [Common/UnitDefinitions](https://github.com/angularsen/UnitsNet/tree/master/Common/UnitDefinitions)
 * See [Length.json](https://github.com/angularsen/UnitsNet/tree/master/Common/UnitDefinitions/Length.json) as an example.
+* Use the [Quantity and Unit Definition Schema](quantity-and-unit-definition-schema.md) as the reference for supported properties and values.
 * Use reliable references, such as [UN/ECE Recommendation No. 21](https://unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_rev3_Annex2e.pdf), Google, Wolfram Alpha or online converters.
 
 #### Conversion function conventions
@@ -86,6 +90,9 @@ Prefer the most widely used abbreviation in the domain, but try to adapt to our 
 * Use `/` over `⁻¹`, such as `km/h` and `J/(mol·K)`
 * Use `h` for hours, `min` for minutes and `s` for seconds (`m` is ambiguous with meters)
 * Use abbreviations defined by [SI Unit System](https://en.wikipedia.org/wiki/International_System_of_Units), such as `l` instead of `L` for liters
+* For force-derived compound units, prefer the technically precise force abbreviation as the primary abbreviation: `lbf`, `ozf`, `gf`, etc. Common shorthand variants such as `lb`, `oz`, or `g` may be added as secondary abbreviations when they are widely used and unambiguous for that quantity. For example, `lbf·ft` should be the primary abbreviation for pound-force foot torque, but `lb·ft` can be accepted as a parsing alias. Do not add shorthand aliases if they would be ambiguous within the same quantity.
+* If a common shorthand abbreviation fits multiple quantities, add it to each relevant quantity, e.g. `ft-lb` for torque and energy, or `oz·in` for torque and static unbalance if both are supported. Global parsing should be ambiguous, while quantity-specific parsing still works.
+* Prefer singular unit symbols such as `lb` and `oz`, not pluralized forms such as `lbs` and `ozs`. A pluralized form can be accepted as a secondary abbreviation if it is a strong domain convention, but it should not normally be the primary abbreviation.
 * Use suffixes to distinguish variants of similar units, such as `gal (U.S.)` vs `gal (imp.)` for gallons
   * `(U.S.)` for United States
   * `(imp.)` for imperial / British units
@@ -100,7 +107,7 @@ The [7 SI base units](https://en.wikipedia.org/wiki/SI_base_unit#Seven_SI_base_u
 - `M` - Mass
 - `T` - Time
 - `I` - ElectricCurrent
-- `Theta` - Temperature
+- `Θ` - Temperature
 - `N` - AmountOfSubstance
 - `J` - LuminousIntensity
 
@@ -206,6 +213,7 @@ git push
 ## Logarithmic Units
 
 Units.NET supports logarithmic units by adding `Logarithmic` and `LogarithmicScalingFactor` (optional) properties.
+See [Logarithmic quantities](quantity-and-unit-definition-schema.md#logarithmic-quantities) for the exact conversion model and examples.
 
 * `LogarithmicScalingFactor` is used to provide a scaling factor in the logarithmic conversion. For example, a scaling factor of `2` is required when implementing the ratio of the squares of two field amplitude quantities such as voltage. In most cases `LogarithmicScalingFactor` will be `1`.
 

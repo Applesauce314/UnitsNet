@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using Xunit;
@@ -159,6 +159,13 @@ namespace UnitsNet.Tests
         {
             LinearDensity linearDensity = Density.FromGramsPerCubicCentimeter(10) * Area.FromSquareCentimeters(2);
             Assert.Equal(20, linearDensity.GramsPerCentimeter);
+        }
+
+        [Fact]
+        public void DensityTimesLengthEqualsAreaDensity()
+        {
+            AreaDensity areaDensity = Density.FromKilogramsPerCubicMeter(10) * Length.FromMeters(2);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(20), areaDensity);
         }
 
         [Fact]

@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -92,25 +92,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Constructor_UnitSystemSI_AssignsSIUnit()
         {
-            var energy = new Energy(1.0, UnitSystem.SI);
+            var energy = new Energy(1, UnitSystem.SI);
             Assert.Equal(EnergyUnit.Joule, energy.Unit);
         }
 
         [Fact]
         public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
-            var btus = new Energy(2.0, EnergyUnit.BritishThermalUnit);
-            Assert.Equal(2110.11170524, btus.As(UnitSystem.SI));
+            var btus = new Energy(2, EnergyUnit.BritishThermalUnit);
+            Assert.Equal(2110.11170524m, btus.As(UnitSystem.SI));
         }
 
         [Fact]
         public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
         {
-            var btus = new Energy(2.0, EnergyUnit.BritishThermalUnit);
+            var btus = new Energy(2, EnergyUnit.BritishThermalUnit);
 
             var inSI = btus.ToUnit(UnitSystem.SI);
 
-            Assert.Equal(2110.11170524, inSI.Value);
+            Assert.Equal(2110.11170524m, inSI.Value);
             Assert.Equal(EnergyUnit.Joule, inSI.Unit);
         }
 

@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -90,6 +90,38 @@ namespace UnitsNet.Tests
         public void OneKBHas1000Bytes()
         {
             Assert.Equal(1000, Information.FromKilobytes(1).Bytes);
+        }
+
+        [Fact]
+        public void InformationDividedByDurationEqualsBitRate()
+        {
+            BitRate bitRate = Information.FromKilobytes(3) / Duration.FromSeconds(2);
+
+            Assert.Equal(12000, bitRate.BitsPerSecond);
+        }
+
+        [Fact]
+        public void InformationDividedByBitRateEqualsDuration()
+        {
+            Duration duration = Information.FromMegabits(3) / BitRate.FromMegabitsPerSecond(2);
+
+            Assert.Equal(1.5, duration.Seconds.ToDouble());
+        }
+
+        [Fact]
+        public void InformationTimesFrequencyEqualsBitRate()
+        {
+            BitRate bitRate = Information.FromBytes(100) * Frequency.FromHertz(2);
+
+            Assert.Equal(1600, bitRate.BitsPerSecond);
+        }
+
+        [Fact]
+        public void FrequencyTimesInformationEqualsBitRate()
+        {
+            BitRate bitRate = Frequency.FromHertz(2) * Information.FromBytes(100);
+
+            Assert.Equal(1600, bitRate.BitsPerSecond);
         }
     }
 }

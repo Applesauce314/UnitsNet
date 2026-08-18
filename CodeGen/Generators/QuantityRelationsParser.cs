@@ -1,11 +1,13 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using CodeGen.Exceptions;
+using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 using Newtonsoft.Json;
 
@@ -24,7 +26,7 @@ namespace CodeGen.Generators
         ///     Each defined relation can be applied multiple times to one or two quantities depending on the operator and the operands.
         ///
         ///     The format of a relation definition is "Quantity.Unit operator Quantity.Unit = Quantity.Unit" (See examples below).
-        ///     "double" can be used as a unitless operand.
+        ///     "QuantityValue" can be used as a unitless operand.
         ///     "1" can be used as the result operand to define inverse relations.
         ///
         ///     Division relations are inferred from multiplication relations,
@@ -43,9 +45,9 @@ namespace CodeGen.Generators
         {
             var quantityDictionary = quantities.ToDictionary(q => q.Name, q => q);
 
-            // Add double and 1 as pseudo-quantities to validate relations that use them.
+            // Add QuantityValue and 1 as pseudo-quantities to validate relations that use them.
             var pseudoQuantity = new Quantity { Name = null!, Units = [new Unit { SingularName = null! }] };
-            quantityDictionary["double"] = pseudoQuantity with { Name = "double" };
+            quantityDictionary["QuantityValue"] = pseudoQuantity with { Name = "QuantityValue" };
             quantityDictionary["1"] = pseudoQuantity with { Name = "1" };
 
             var relations = ParseRelations(rootDir, quantityDictionary);
@@ -61,7 +63,7 @@ namespace CodeGen.Generators
                     RightUnit = r.LeftUnit,
                 })
                 .ToList());
-            
+
             // We can infer division relations from multiplication relations.
             relations.AddRange(relations
                 .Where(r => r is { Operator: "*", NoInferredDivision: false })
@@ -91,7 +93,7 @@ namespace CodeGen.Generators
                 var list = string.Join("\n  ", duplicates);
                 throw new UnitsNetCodeGenException($"Duplicate inferred relations:\n  {list}");
             }
-            
+
             var ambiguous = relations
                 .GroupBy(r => $"{r.LeftQuantity.Name} {r.Operator} {r.RightQuantity.Name}")
                 .Where(g => g.Count() > 1)
@@ -115,9 +117,9 @@ namespace CodeGen.Generators
                         // The left operand of a relation is responsible for generating the operator.
                         quantityRelations.Add(relation);
                     }
-                    else if (relation.RightQuantity == quantity && relation.LeftQuantity.Name is "double")
+                    else if (relation.RightQuantity == quantity && relation.LeftQuantity.Name is "QuantityValue")
                     {
-                        // Because we cannot add operators to double we make the right operand responsible in this case.
+                        // Because we cannot add operators to QuantityValue we make the right operand responsible in this case.
                         quantityRelations.Add(relation);
                     }
                 }
@@ -132,13 +134,16 @@ namespace CodeGen.Generators
 
             try
             {
-                var text = File.ReadAllText(relationsFileName);
-                var relationStrings = JsonConvert.DeserializeObject<SortedSet<string>>(text) ?? [];
+                var text = CodeGenFile.ReadAllText(relationsFileName);
+
+                // Explicitly sort to keep the file consistent.
+                var relationStrings = JsonConvert.DeserializeObject<List<string>>(text)
+                    ?.ToImmutableSortedSet(StringComparer.OrdinalIgnoreCase) ?? [];
 
                 var parsedRelations = relationStrings.Select(relationString => ParseRelation(relationString, quantities)).ToList();
 
                 // File parsed successfully, save it back to disk in the sorted state.
-                File.WriteAllText(relationsFileName, JsonConvert.SerializeObject(relationStrings, Formatting.Indented));
+                CodeGenFile.WriteAllText(relationsFileName, JsonConvert.SerializeObject(relationStrings, Formatting.Indented));
 
                 return parsedRelations;
             }

@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -37,8 +37,7 @@ namespace UnitsNet.Tests
 
         protected override double DecilitersInOneCubicMeter => 1E4;
         protected override double DeciusGallonsInOneCubicMeter => 2.6417217e+3;
-        protected override double HectocubicFeetInOneCubicMeter => 3.531472e-1;
-        protected override double HectocubicMetersInOneCubicMeter => 0.01;
+        protected override double HundredCubicFeetInOneCubicMeter => 3.531472e-1;
 
         protected override double HectolitersInOneCubicMeter => 1E1;
 
@@ -48,15 +47,15 @@ namespace UnitsNet.Tests
 
         protected override double ImperialOuncesInOneCubicMeter => 35195.07972;
 
-        protected override double KilocubicFeetInOneCubicMeter => 3.531472e-2;
-        protected override double KilocubicMetersInOneCubicMeter => 0.001;
+        protected override double ThousandCubicFeetInOneCubicMeter => 3.531472e-2;
+        protected override double ThousandCubicMetersInOneCubicMeter => 0.001;
         protected override double KiloimperialGallonsInOneCubicMeter => 2.1996924e-1;
         protected override double KilousGallonsInOneCubicMeter => 2.6417217e-1;
 
         protected override double LitersInOneCubicMeter => 1E3;
         protected override double KilolitersInOneCubicMeter => 1;
 
-        protected override double MegacubicFeetInOneCubicMeter => 3.531472e-5;
+        protected override double MillionCubicFeetInOneCubicMeter => 3.531472e-5;
         protected override double MegaimperialGallonsInOneCubicMeter => 2.1996924e-4;
         protected override double MegausGallonsInOneCubicMeter => 2.6417217e-4;
 
@@ -113,6 +112,20 @@ namespace UnitsNet.Tests
         /// </summary>
         protected override double ImperialQuartsInOneCubicMeter => 879.876993196;
 
+        /// <summary>
+        /// https://www.bipm.org/en/measurement-units/si-prefixes
+        /// </summary>
+        [Theory]
+        [InlineData(1e6, "hm³")]
+        [InlineData(1e9, "km³")]
+        public void ConvertByAbbreviation_CubicMetersToTrueCubicPrefixedUnits(double cubicMeters, string abbreviation)
+        {
+            bool converted = UnitConverter.TryConvertByAbbreviation(cubicMeters, "Volume", "m³", abbreviation, out QuantityValue result);
+
+            Assert.True(converted);
+            Assert.Equal(QuantityValue.One, result);
+        }
+
         [Fact]
         public void VolumeDividedByAreaEqualsLength()
         {
@@ -132,6 +145,13 @@ namespace UnitsNet.Tests
         {
             Mass mass = Volume.FromCubicMeters(2)*Density.FromKilogramsPerCubicMeter(3);
             Assert.Equal(mass, Mass.FromKilograms(6));
+        }
+
+        [Fact]
+        public void VolumeTimesSpecificWeightEqualsForce()
+        {
+            Force force = Volume.FromCubicMeters(2) * SpecificWeight.FromNewtonsPerCubicMeter(3);
+            Assert.Equal(force, Force.FromNewtons(6));
         }
 
         [Theory]

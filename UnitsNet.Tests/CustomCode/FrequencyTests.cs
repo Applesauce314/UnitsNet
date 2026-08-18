@@ -1,7 +1,8 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests
 {
@@ -30,5 +31,13 @@ namespace UnitsNet.Tests
         protected override double RadiansPerSecondInOneHertz => 2 * Math.PI;
 
         protected override double BeatsPerMinuteInOneHertz => 60;
+
+        [Fact]
+        public void FrequencyInverseEqualsDuration()
+        {
+            Duration duration = Frequency.FromHertz(2).Inverse();
+
+            Assert.Equal(0.5, duration.Seconds.ToDouble());
+        }
     }
 }

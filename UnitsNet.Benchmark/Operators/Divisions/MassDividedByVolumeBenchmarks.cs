@@ -1,4 +1,4 @@
-﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using UnitsNet.Units;
 
@@ -9,8 +9,8 @@ namespace UnitsNet.Benchmark.Operators.Divisions;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class MassDividedByVolumeBenchmarks
 {
-    private static readonly double MassValue = 1.23;
-    private static readonly double VolumeValue = 9.42;
+    private static readonly QuantityValue MassValue = 1.23;
+    private static readonly QuantityValue VolumeValue = 9.42;
 
     [Benchmark]
     public Density MassByVolume()

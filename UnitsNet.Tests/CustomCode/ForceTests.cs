@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using Xunit;
@@ -71,6 +71,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ForceDividedBySpecificWeightEqualsVolume()
+        {
+            Volume volume = Force.FromNewtons(200) / SpecificWeight.FromNewtonsPerCubicMeter(50);
+            Assert.Equal(Volume.FromCubicMeters(4), volume);
+        }
+
+        [Fact]
+        public void ForceDividedByVolumeEqualsSpecificWeight()
+        {
+            SpecificWeight specificWeight = Force.FromNewtons(200) / Volume.FromCubicMeters(50);
+            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(4), specificWeight);
+        }
+
+        [Fact]
         public void MassByAccelerationEqualsForce()
         {
             Force force = Force.FromMassByAcceleration(Mass.FromKilograms(85), Acceleration.FromMetersPerSecondSquared(-4));
@@ -109,7 +123,7 @@ namespace UnitsNet.Tests
         public void KilogramForceDividedByNewtonEqualsStandardGravity()
         {
             var duration = Force.FromKilogramsForce(1) / Force.FromNewtons(1);
-            Assert.Equal(9.80665, duration);
+            Assert.Equal(9.80665m, duration);
         }
 
         [Fact]
@@ -117,6 +131,19 @@ namespace UnitsNet.Tests
         {
             var force = Force.FromGramsForce(1000);
             Assert.Equal(Force.FromKilogramsForce(1), force.ToUnit(ForceUnit.KilogramForce));
+        }
+
+        [Fact]
+        public void ForceTimesDurationEqualsImpulse()
+        {
+            Force force = Force.FromNewtons(2);
+            Duration duration = Duration.FromSeconds(3);
+            Impulse expected = Impulse.FromNewtonSeconds(6);
+
+            Assert.Equal(expected, force * duration);
+            Assert.Equal(expected, duration * force);
+            Assert.Equal(duration, expected / force);
+            Assert.Equal(force, expected / duration);
         }
     }
 }
