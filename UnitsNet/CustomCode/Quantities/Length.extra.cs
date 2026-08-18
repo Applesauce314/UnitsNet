@@ -278,9 +278,14 @@ namespace UnitsNet
             inchPart.Append('"');
 
             if (feet == 0)
-            {
-                return inchPart.ToString();
-            }
+{
+if (isNegative)
+{
+    //negate inches so we output the correct sign. 
+    inchPart = -inchPart;
+}
+return inchPart.ToString();
+}
 
 
             if (isNegative)
