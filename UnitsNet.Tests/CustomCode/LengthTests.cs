@@ -266,6 +266,7 @@ namespace UnitsNet.Tests
         [InlineData(3, 2.6, 32, "3' - 2 19/32\"")]
         [InlineData(3, 2.6, 128, "3' - 2 77/128\"")]
         [InlineData(3, 11.9988, 128, "4' - 0\"")]
+        [InlineData(0, 0.5d, 128, "1/2\"")]
         public static void ToArchitecturalString_ReturnsFormatted(double ft, double inch, int fractionDenominator, string expected)
         {
             var length = Length.FromFeetInches(ft, inch);

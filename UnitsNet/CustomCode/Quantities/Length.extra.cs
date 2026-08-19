@@ -20,7 +20,7 @@ namespace UnitsNet
             get
             {
                 QuantityValue totalInches = Inches;
-                return new FeetInches((BigInteger) (totalInches / InchesInOneFoot), totalInches % InchesInOneFoot);
+                return new FeetInches((BigInteger)(totalInches / InchesInOneFoot), totalInches % InchesInOneFoot);
             }
         }
 
@@ -44,7 +44,8 @@ namespace UnitsNet
         /// <returns>Parsed length.</returns>
         public static Length ParseFeetInches(string str, IFormatProvider? formatProvider = null)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            if (str == null)
+                throw new ArgumentNullException(nameof(str));
             if (!TryParseFeetInches(str, out Length result, formatProvider))
             {
                 // A bit lazy, but I didn't want to duplicate this edge case implementation just to get more narrow exception descriptions.
@@ -163,15 +164,15 @@ namespace UnitsNet
             // So inches are rounded when converting from base units to feet/inches.
             // When we do this we check if we rounded inches to 12(InchesInOneFoot).
             // If it does feet/inches are fixed something like 4 ft 0 in is displayed instead of 3ft 12 in for things very close to 4 e.g. 3.9999 ft 
-            double feet;
+            BigInteger feet;
             double inches;
-            bool isNegative = Feet < 0 || Inches < 0;
+            var isNegative = Feet < 0 || Inches < 0;
             var negativeSign = "";
             if (isNegative)
             {
                 feet = -Feet;
                 inches = Math.Round(-Inches);
-                negativeSign = cultureInfo.NumberFormat.NegativeSign;
+                negativeSign = (cultureInfo as CultureInfo)?.NumberFormat.NegativeSign ?? "-";
             }
             else
             {
@@ -243,6 +244,7 @@ namespace UnitsNet
 
             if (inchTrunc != 0 || numerator == 0)
             {
+
                 inchPart.Append(inchTrunc);
             }
 
@@ -277,10 +279,11 @@ namespace UnitsNet
             {
                 if (isNegative)
                 {
+                    var negativeSign = CultureInfo.CurrentCulture.NumberFormat.NegativeSign;
                     //negate inches so the output uses a culture correct negative sign.
-                    inchPart = -inchPart;
+                    inchPart.Insert(0, negativeSign);
                 }
-                
+
                 return inchPart.ToString();
             }
 
