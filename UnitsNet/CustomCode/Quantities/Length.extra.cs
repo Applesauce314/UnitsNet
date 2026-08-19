@@ -44,8 +44,7 @@ namespace UnitsNet
         /// <returns>Parsed length.</returns>
         public static Length ParseFeetInches(string str, IFormatProvider? formatProvider = null)
         {
-            if (str == null)
-                throw new ArgumentNullException(nameof(str));
+            if (str == null) throw new ArgumentNullException(nameof(str));
             if (!TryParseFeetInches(str, out Length result, formatProvider))
             {
                 // A bit lazy, but I didn't want to duplicate this edge case implementation just to get more narrow exception descriptions.
