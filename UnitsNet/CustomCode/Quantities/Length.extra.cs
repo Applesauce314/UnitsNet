@@ -227,7 +227,6 @@ namespace UnitsNet
                 inches = -inches;
             }
 
-
             var inchTrunc = (int)Math.Truncate(inches);
             var numerator = (int)Math.Round((inches - inchTrunc) * fractionDenominator);
 
