@@ -171,7 +171,7 @@ namespace UnitsNet
             {
                 feet = -Feet;
                 inches = Math.Round(-Inches);
-                negativeSign = cultureInfo.NumberFormat.NegativeSign
+                negativeSign = cultureInfo.NumberFormat.NegativeSign;
             }
             else
             {
