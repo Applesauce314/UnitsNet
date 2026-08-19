@@ -10,7 +10,7 @@ namespace UnitsNet
 {
     public partial struct Length
     {
-        private static readonly QuantityValue InchesInOneFoot = 12;
+        internal static readonly QuantityValue InchesInOneFoot = 12;
 
         /// <summary>
         ///     Converts the length to a customary feet/inches combination.
