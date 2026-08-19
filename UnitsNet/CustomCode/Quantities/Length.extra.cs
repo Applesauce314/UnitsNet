@@ -167,10 +167,12 @@ namespace UnitsNet
             double feet;
             double inches;
             bool isNegative = Feet < 0 || Inches < 0;
+            var negativeSign = "";
             if (isNegative)
             {
                 feet = -Feet;
                 inches = Math.Round(-Inches);
+                negativeSign = cultureInfo.NumberFormat.NegativeSign
             }
             else
             {
@@ -184,12 +186,7 @@ namespace UnitsNet
                 inches = 0;
             }
 
-            if (isNegative)
-            {
-                //we re-negate feet here so the negative will be handled by the built in formatter
-                feet = -feet;
-            }
-            return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", feet, footUnit, inches, inchUnit);
+            return string.Format(cultureInfo, "{4}{0:n0} {1} {2:n0} {3}", feet, footUnit, inches, inchUnit, negativeSign);
         }
 
         /// <summary>
@@ -278,18 +275,21 @@ namespace UnitsNet
             inchPart.Append('"');
 
             if (feet == 0)
-{
-if (isNegative)
-{
-    //negate inches so we output the correct sign. 
-    inchPart = -inchPart;
-}
-return inchPart.ToString();
-}
+            {
+                if (isNegative)
+                {
+                    //negate inches so the output uses a culture correct negative sign.
+                    inchPart = -inchPart;
+                }
+                
+                return inchPart.ToString();
+            }
 
             if (isNegative)
             {
                 //re-negate feet so the output uses a culture correct negative sign.
+                //the behaviour different of feet = -feet  between .netframework and .netcore/.net runtimes,
+                //where newer runtimes support -0.0 is not an issue here because we do not emit the feet part if it is 0.
                 feet = -feet;
             }
 
