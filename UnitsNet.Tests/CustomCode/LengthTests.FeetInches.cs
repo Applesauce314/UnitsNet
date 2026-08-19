@@ -182,9 +182,14 @@ public class FeetInchesTests
         [InlineData(38.563, "3 ft 3 in")]
         [InlineData(-38.563, "-3 ft 3 in")]
         [InlineData(50.2, "4 ft 2 in")]
-        [InlineData(-50.2, "-4 ft 2 in")]
+        [InlineData(-50.2, "-4 ft 2 in")]        
+        [InlineData(-7.6, "-0 ft 8 in")]
+        [InlineData(7.6, "0 ft 8 in")]
+        [InlineData(0, "0 ft 0 in")]
+        [InlineData(-0.0d, "0 ft 0 in")]
         [InlineData(-50.2, "-4 фут 2 дюйм", "ru-RU")]//ensure we are using alternate units
-        [InlineData(-50.2, "\u22124 ft 2 in", "nb-NO")]// nb-NO does not have alternate abbreviations defined in length.json but does use a different negative symbol
+        [InlineData(-50.2, "\u22124 ft 2 in", "nb-NO")]// nb-NO does not have alternate abbreviations defined in length.json but does use a different negative symbol        
+        [InlineData(-8, "\u22120 ft 8 in", "nb-NO")]// nb-NO does not have alternate abbreviations defined in length.json but does use a different negative symbol
         public static void FeetInches_ToStringFormatsCorrectly(double inch, string expected, string? cultureString = null)
         {
             var length = Length.FromInches(inch);
