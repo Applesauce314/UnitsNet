@@ -288,7 +288,6 @@ if (isNegative)
 return inchPart.ToString();
 }
 
-
             if (isNegative)
             {
                 //re-negate feet so the output uses a culture correct negative sign.
