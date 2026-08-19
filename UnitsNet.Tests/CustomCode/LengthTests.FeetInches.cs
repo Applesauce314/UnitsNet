@@ -159,7 +159,12 @@ public class FeetInchesTests
         [InlineData(-13, 32, "-1' - 1\"")]
         [InlineData(38.563, 32, "3' - 2 9/16\"")]
         [InlineData(-38.563, 32, "-3' - 2 9/16\"")]
-
+        [InlineData(-5.5, 32, "-5 1/2\"")]
+        [InlineData(5.75, 32, "5 3/4\"")]
+        [InlineData(6, 32, "6\"")]
+        [InlineData(-9, 32, "-9\"")]
+        [InlineData(36, 32, "3' - 0\"")]
+        [InlineData(-48, 128, "-4' - 0\"")]
         public static void NegativeToArchitecturalString_ReturnsFormatted(double inch, int fractionDenominator, string expected)
         {
             var length = Length.FromInches(inch);
